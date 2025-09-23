@@ -20,6 +20,7 @@ public class Creature
     private final static int MAX_HEALTH = 100;
     private final static int MIN_DAMAGE = 0;
     private final static int MIN_HEAL_AMOUNT = 0;
+    private final static int MIN_AGE = 0;
 
     private final String name;
     private final Date dateOfBirth;
@@ -127,19 +128,6 @@ public class Creature
 
         now = new Date(2025, 9, 22);
         diff = now.getYear() - dateOfBirth.getYear();
-        if (now.getMonth() < dateOfBirth.getMonth())
-        {
-            diff--;
-        }
-        else if (now.getMonth() != dateOfBirth.getMonth())
-        {
-            return diff;
-        }
-
-        if (now.getDay() < dateOfBirth.getDay())
-        {
-            diff--;
-        }
 
         return diff;
     }
