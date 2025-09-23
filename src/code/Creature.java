@@ -20,7 +20,6 @@ public class Creature
     private final static int MAX_HEALTH = 100;
     private final static int MIN_DAMAGE = 0;
     private final static int MIN_HEAL_AMOUNT = 0;
-    private final static int MIN_AGE = 0;
 
     private final String name;
     private final Date dateOfBirth;
@@ -80,23 +79,13 @@ public class Creature
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
-        else if (date.getYear() != now.getYear())
-        {
-            return;
-        }
-
-        //  Everything below we know is `date.getYear() == now.getYear()`
-        if (date.getMonth() > now.getMonth())
+        else if (date.getYear() == now.getYear() &&
+                date.getMonth() > now.getMonth())
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
-        else if (date.getMonth() != now.getMonth())
-        {
-            return;
-        }
-
-        // Everything below we know is `date.getMonth() == now.getMonth()`
-        if (date.getDay() > now.getDay())
+        else if (date.getMonth() == now.getMonth() &&
+                date.getDay() > now.getDay())
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
@@ -116,6 +105,21 @@ public class Creature
         }
     }
 
+    public String getName()
+    {
+        return name;
+    }
+
+    public Date getDateOfBirth()
+    {
+        return dateOfBirth;
+    }
+
+    public int getHealth()
+    {
+        return health;
+    }
+
     /**
      * Return the creature's age in whole years as of the fixed "now" date used in this class.
      *
@@ -132,12 +136,8 @@ public class Creature
         {
             diff--;
         }
-        else if (dateOfBirth.getMonth() != now.getMonth())
-        {
-            return diff;
-        }
-
-        if (dateOfBirth.getDay() > now.getDay())
+        else if (dateOfBirth.getMonth() == now.getMonth() &&
+                dateOfBirth.getDay() > now.getDay())
         {
             diff--;
         }
