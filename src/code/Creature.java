@@ -128,6 +128,19 @@ public class Creature
 
         now = new Date(2025, 9, 22);
         diff = now.getYear() - dateOfBirth.getYear();
+        if (dateOfBirth.getMonth() > now.getMonth())
+        {
+            diff--;
+        }
+        else if (dateOfBirth.getMonth() != now.getMonth())
+        {
+            return diff;
+        }
+
+        if (dateOfBirth.getDay() > now.getDay())
+        {
+            diff--;
+        }
 
         return diff;
     }
