@@ -1,7 +1,9 @@
+package ca.bcit.comp2522.lab2;
+
 /**
  * Represents a calendar date with day, month, and year values.
  *
- * <p>The {@code Date} class provides:</p>
+ * <p>The {@code ca.bcit.comp2522.lab2.Date} class provides:</p>
  * <ul>
  *     <li>Validation to ensure all dates fall between the year 1800 and the current year (2025).</li>
  *     <li>Support for retrieving day, month, and year values individually.</li>
@@ -114,7 +116,7 @@ public class Date
     private final int day;
 
     /**
-     * Constructs a new {@code Date} object after validating the provided year, month, and day.
+     * Constructs a new {@code ca.bcit.comp2522.lab2.Date} object after validating the provided year, month, and day.
      *
      * @param year  the year
      * @param month the month

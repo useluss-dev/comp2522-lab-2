@@ -1,3 +1,5 @@
+package ca.bcit.comp2522.lab2;
+
 /**
  * Represents a creature with a name, date of birth and health state.
  * <p>
@@ -26,7 +28,7 @@ public class Creature
     private int health;
 
     /**
-     * Construct a new Creature.
+     * Construct a new ca.bcit.comp2522.lab2.Creature.
      *
      * @param name        the creature's name; must not be null or blank
      * @param dateOfBirth the creature's date of birth; must not be null or in the future
@@ -71,7 +73,7 @@ public class Creature
         Date now;
         if (date == null)
         {
-            throw new IllegalArgumentException("Date cannot be null");
+            throw new IllegalArgumentException("ca.bcit.comp2522.lab2.Date cannot be null");
         }
 
         now = new Date(2025, 9, 22);
@@ -148,13 +150,13 @@ public class Creature
     /**
      * Print creature details to standard output.
      * <p>
-     * Printed fields: Name, Date of birth (YYYYMMDD), Age, Health.
+     * Printed fields: Name, ca.bcit.comp2522.lab2.Date of birth (YYYYMMDD), Age, Health.
      * </p>
      */
     public void getDetails()
     {
         System.out.println("Name: " + name);
-        System.out.println("Date of birth: " + dateOfBirth.getYYYYMMDD());
+        System.out.println("ca.bcit.comp2522.lab2.Date of birth: " + dateOfBirth.getYYYYMMDD());
         System.out.println("Age: " + getAgeYears());
         System.out.println("Health: " + health);
     }

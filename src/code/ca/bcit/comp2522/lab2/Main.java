@@ -1,3 +1,5 @@
+package ca.bcit.comp2522.lab2;
+
 public class Main
 {
     public static void main(String[] args)
@@ -7,7 +9,7 @@ public class Main
 
         System.out.println("\n");
 
-        Dragon dragon = new Dragon("Dragon", new Date(2012, 8, 10), 100, 4);
+        Dragon dragon = new Dragon("ca.bcit.comp2522.lab2.Dragon", new Date(2012, 8, 10), 100, 4);
         dragon.getDetails();
 
         try

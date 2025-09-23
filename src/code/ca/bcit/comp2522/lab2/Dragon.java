@@ -1,3 +1,5 @@
+package ca.bcit.comp2522.lab2;
+
 public class Dragon extends Creature
 {
     private static final int MIN_FIRE_POWER = 0;
