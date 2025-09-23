@@ -41,6 +41,21 @@ public class Creature
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
+        else if (date.getYear() == now.getYear())
+        {
+            if (date.getMonth() > now.getMonth())
+            {
+                throw new IllegalArgumentException("The provided date must not be in the future.");
+            }
+
+            if (date.getMonth() == now.getMonth())
+            {
+                if (date.getDay() > now.getDay())
+                {
+                    throw new IllegalArgumentException("The provided date must not be in the future.");
+                }
+            }
+        }
     }
 
     private static void validateHealth(final int health)
@@ -64,7 +79,7 @@ public class Creature
         }
         else if (dateOfBirth.getMonth() == now.getMonth())
         {
-            if (dateOfBirth.getDay() < now.getDay())
+            if (now.getDay() < dateOfBirth.getDay())
             {
                 diff--;
             }

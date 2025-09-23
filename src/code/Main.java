@@ -2,7 +2,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Creature grimblo = new Creature("Grimbler", new Date(2024, 9, 2), 100);
-        grimblo.getDetails();
+        Creature monkey = new Creature("Monkey", new Date(2012, 9, 22), 100);
+        monkey.getDetails();
     }
 }
