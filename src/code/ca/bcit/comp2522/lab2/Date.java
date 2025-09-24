@@ -3,7 +3,7 @@ package ca.bcit.comp2522.lab2;
 /**
  * Represents a calendar date with day, month, and year values.
  *
- * <p>The {@code ca.bcit.comp2522.lab2.Date} class provides:</p>
+ * <p>The Date class provides:</p>
  * <ul>
  *     <li>Validation to ensure all dates fall between the year 1800 and the current year (2025).</li>
  *     <li>Support for retrieving day, month, and year values individually.</li>

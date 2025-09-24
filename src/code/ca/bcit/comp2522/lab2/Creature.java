@@ -2,16 +2,6 @@ package ca.bcit.comp2522.lab2;
 
 /**
  * Represents a creature with a name, date of birth and health state.
- * <p>
- * Instances validate inputs on construction and expose simple operations:
- * <ul>
- *      <li>get age in years,</li>
- *      <li>print details,</li>
- *      <li>check alive status,</li>
- *      <li>take damage,</li>
- *      <li>receive healing.</li>
- * </ul>
- * </p>
  *
  * @author Ryan Fiset, Larry Lin
  * @version 1.0
@@ -28,7 +18,7 @@ public class Creature
     private int health;
 
     /**
-     * Construct a new ca.bcit.comp2522.lab2.Creature.
+     * Construct a new Creature.
      *
      * @param name        the creature's name; must not be null or blank
      * @param dateOfBirth the creature's date of birth; must not be null or in the future
@@ -150,7 +140,7 @@ public class Creature
     /**
      * Print creature details to standard output.
      * <p>
-     * Printed fields: Name, ca.bcit.comp2522.lab2.Date of birth (YYYYMMDD), Age, Health.
+     * Printed fields: Name, Date of birth (YYYYMMDD), Age, Health.
      * </p>
      */
     public void getDetails()
