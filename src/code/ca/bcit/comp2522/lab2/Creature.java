@@ -1,7 +1,12 @@
 package ca.bcit.comp2522.lab2;
 
 /**
- * Represents a creature with a name, date of birth and health state.
+ * Represents a fantasy creature with a name, date of birth, and health status.
+ * <p>
+ * A {@code Creature} can take damage, be healed, and report details such as its age,
+ * current health, and whether it is alive. The class enforces validation rules for
+ * name, date of birth (cannot be in the future), and health (must be within valid limits).
+ * </p>
  *
  * @author Ryan Fiset, Larry Lin
  * @version 1.0
@@ -18,12 +23,13 @@ public class Creature
     private int health;
 
     /**
-     * Construct a new Creature.
+     * Constructs a new {@code Creature} with the specified name, date of birth, and health.
      *
-     * @param name        the creature's name; must not be null or blank
-     * @param dateOfBirth the creature's date of birth; must not be null or in the future
-     * @param health      initial health; must be between {@value #MIN_HEALTH} and {@value #MAX_HEALTH}
-     * @throws IllegalArgumentException if any argument is invalid
+     * @param name        the name of the creature, must not be null or blank
+     * @param dateOfBirth the date of birth of the creature, must not be null or in the future
+     * @param health      the initial health of the creature, must be between {@link #MIN_HEALTH} and
+     *                    {@link #MAX_HEALTH}
+     * @throws IllegalArgumentException if validation of name, dateOfBirth, or health fails
      */
     public Creature(final String name, final Date dateOfBirth, final int health)
     {
@@ -37,26 +43,25 @@ public class Creature
     }
 
     /**
-     * Validate that the provided name is not null or blank.
+     * Validates that the provided name is not null or blank.
      *
      * @param name the name to validate
-     * @throws IllegalArgumentException if name is null or blank
+     * @throws IllegalArgumentException if the name is null or blank
      */
     private static void validateName(final String name)
     {
-        if (name == null || name.isBlank())
+        if (name == null ||
+            name.isBlank())
         {
             throw new IllegalArgumentException("Name cannot be null or blank");
         }
     }
 
     /**
-     * Validate that the provided date is not null and not in the future.
-     *
-     * <p>Uses a fixed "now" date in the current implementation.
+     * Validates that the provided date is not null and not in the future.
      *
      * @param date the date to validate
-     * @throws IllegalArgumentException if date is null or in the future
+     * @throws IllegalArgumentException if the date is null or in the future
      */
     private static void validateDate(final Date date)
     {
@@ -71,51 +76,71 @@ public class Creature
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
-        else if (date.getYear() == now.getYear() &&
-                date.getMonth() > now.getMonth())
+
+        if (date.getYear() == now.getYear() &&
+            date.getMonth() > now.getMonth())
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
-        else if (date.getMonth() == now.getMonth() &&
-                date.getDay() > now.getDay())
+
+        if (date.getMonth() == now.getMonth() &&
+            date.getDay() > now.getDay())
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
     }
 
     /**
-     * Validate that health is within allowed bounds.
+     * Validates that the health is within the allowed range.
      *
      * @param health the health value to validate
-     * @throws IllegalArgumentException if health is outside [{@value #MIN_HEALTH}, {@value #MAX_HEALTH}]
+     * @throws IllegalArgumentException if health is less than {@link #MIN_HEALTH} or greater than {@link #MAX_HEALTH}
      */
     private static void validateHealth(final int health)
     {
-        if (health < MIN_HEALTH || health > MAX_HEALTH)
+        if (health < MIN_HEALTH ||
+            health > MAX_HEALTH)
         {
             throw new IllegalArgumentException("Health must be between " + MIN_HEALTH + " and " + MAX_HEALTH);
         }
     }
 
+    /**
+     * Gets the name of the creature.
+     *
+     * @return the creature's name
+     */
     public String getName()
     {
         return name;
     }
 
+
+    /**
+     * Gets the date of birth of the creature.
+     *
+     * @return the creature's date of birth
+     */
     public Date getDateOfBirth()
     {
         return dateOfBirth;
     }
 
+    /**
+     * Gets the current health of the creature.
+     *
+     * @return the creature's current health
+     */
     public int getHealth()
     {
         return health;
     }
 
+
     /**
-     * Return the creature's age in whole years as of the fixed "now" date used in this class.
+     * Calculates the age of the creature in years based on the current date.
      *
-     * @return age in years
+     * @return the age of the creature in years
      */
     public int getAgeYears()
     {
@@ -128,8 +153,9 @@ public class Creature
         {
             diff--;
         }
-        else if (dateOfBirth.getMonth() == now.getMonth() &&
-                dateOfBirth.getDay() > now.getDay())
+
+        if (dateOfBirth.getMonth() == now.getMonth() &&
+            dateOfBirth.getDay() > now.getDay())
         {
             diff--;
         }
@@ -138,9 +164,9 @@ public class Creature
     }
 
     /**
-     * Print creature details to standard output.
+     * Prints the details of the creature to standard output.
      * <p>
-     * Printed fields: Name, Date of birth (YYYYMMDD), Age, Health.
+     * Details include name, date of birth, age, and health.
      * </p>
      */
     public void getDetails()
@@ -152,22 +178,24 @@ public class Creature
     }
 
     /**
-     * Return whether the creature is alive.
+     * Checks if the creature is alive.
      *
-     * @return true if health is greater than {@value #MIN_HEALTH}, otherwise false
+     * @return {@code true} if the creature's health is greater than {@link #MIN_HEALTH}, {@code false} otherwise
      */
     public boolean isAlive()
     {
         return health > MIN_HEALTH;
     }
 
+
     /**
-     * Apply damage to the creature, reducing health.
+     * Applies damage to the creature, reducing its health.
+     * <p>
+     * Health cannot drop below {@link #MIN_HEALTH}.
+     * </p>
      *
-     * <p>Health is clamped to {@value #MIN_HEALTH} if damage reduces it below that.</p>
-     *
-     * @param damage non-negative damage value
-     * @throws DamageException if damage is negative
+     * @param damage the amount of damage to apply, must be non-negative
+     * @throws DamageException if the damage amount is negative
      */
     public void takeDamage(final int damage)
     {
@@ -184,13 +212,15 @@ public class Creature
         }
     }
 
+
     /**
-     * Heal the creature, increasing health.
+     * Heals the creature by increasing its health.
+     * <p>
+     * Health cannot exceed {@link #MAX_HEALTH}.
+     * </p>
      *
-     * <p>Health is clamped to {@value #MAX_HEALTH} if healing raises it above that.</p>
-     *
-     * @param healAmount non-negative healing amount
-     * @throws HealingException if healAmount is negative
+     * @param healAmount the amount to heal, must be non-negative
+     * @throws HealingException if the healing amount is negative
      */
     public void heal(final int healAmount)
     {

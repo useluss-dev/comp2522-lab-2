@@ -1,7 +1,15 @@
 package ca.bcit.comp2522.lab2;
 
+
 /**
- * A Dragon is a specialized {@link Creature} that can also use and restore fire power.
+ * Represents a dragon, a type of {@link Creature} that has fire power
+ * in addition to standard creature attributes such as name, date of birth,
+ * and health.
+ * <p>
+ * A {@code Dragon} can breathe fire on other creatures, causing them damage,
+ * and can restore its fire power. Fire power is consumed when
+ * breathing fire and is bounded by defined minimum and maximum values.
+ * </p>
  *
  * @author Ryan Fiset, Larry Lin
  * @version 1.0
@@ -13,16 +21,19 @@ public class Dragon extends Creature
     private static final int FIRE_POWER_COST = 10;
     private static final int FIRE_POWER_DAMAGE = 20;
 
-    int firePower;
+    private int firePower;
 
     /**
-     * Create a new Dragon.
+     * Constructs a new {@code Dragon} with the given attributes.
      *
-     * @param name      the dragon's name; must satisfy {@link Creature} name constraints
-     * @param birthDate the dragon's date of birth; must satisfy {@link Creature} date constraints
-     * @param age       initial age value passed to the {@link Creature} constructor
-     * @param firePower initial fire power; must be between {@value #MIN_FIRE_POWER} and {@value #MAX_FIRE_POWER}
-     * @throws IllegalArgumentException if {@code firePower} is outside allowed range or if super constructor arguments are invalid
+     * @param name      the name of the dragon, must not be null or blank
+     * @param birthDate the date of birth of the dragon, must not be null or in the future
+     * @param age       the initial health of the dragon, must be between {@link Creature#MIN_HEALTH}
+     *                  and {@link Creature#MAX_HEALTH}
+     * @param firePower the initial fire power of the dragon, must be between {@link #MIN_FIRE_POWER}
+     *                  and {@link #MAX_FIRE_POWER}
+     * @throws IllegalArgumentException if firePower is outside the valid range, or if any
+     *                                  arguments to the {@code Creature} constructor are invalid
      */
     public Dragon(String name, Date birthDate, int age, int firePower)
     {
@@ -31,26 +42,26 @@ public class Dragon extends Creature
         this.firePower = firePower;
     }
 
-
     /**
-     * Validate that the provided fire power is within allowable bounds.
+     * Validates that the provided fire power is within the allowed range.
      *
-     * @param firePower the value to validate
-     * @throws IllegalArgumentException if {@code firePower} is less than {@value #MIN_FIRE_POWER} or greater than {@value #MAX_FIRE_POWER}
+     * @param firePower the fire power value to validate
+     * @throws IllegalArgumentException if fire power is less than {@link #MIN_FIRE_POWER}
+     *                                  or greater than {@link #MAX_FIRE_POWER}
      */
     private static void validateFirePower(final int firePower)
     {
-        if (firePower < MIN_FIRE_POWER || firePower > MAX_FIRE_POWER)
+        if (firePower < MIN_FIRE_POWER ||
+            firePower > MAX_FIRE_POWER)
         {
             throw new IllegalArgumentException("Fire power must be between " + MIN_FIRE_POWER + " and " + MAX_FIRE_POWER);
         }
     }
 
-
     /**
-     * Print dragon details, including inherited creature details and current fire power.
+     * Prints the details of the dragon to standard output.
      * <p>
-     * Calls {@link Creature#getDetails()} then prints "Fire power: &lt;value&gt;".
+     * Details include all creature information plus fire power.
      * </p>
      */
     @Override
@@ -61,9 +72,9 @@ public class Dragon extends Creature
     }
 
     /**
-     * Return the dragon's current fire power.
+     * Gets the current fire power of the dragon.
      *
-     * @return current fire power in range [{@value #MIN_FIRE_POWER}, {@value #MAX_FIRE_POWER}]
+     * @return the dragon's fire power
      */
     public int getFirePower()
     {
@@ -71,18 +82,14 @@ public class Dragon extends Creature
     }
 
     /**
-     * Breathe fire on a target creature.
+     * Breathes fire on a target creature, reducing the dragon's fire power
+     * and dealing damage to the target.
      *
-     * <p>
-     * The method checks that the dragon has at least {@value #FIRE_POWER_COST} fire power,
-     * reduces the dragon's fire power by that cost, and applies {@value #FIRE_POWER_DAMAGE}
-     * damage to the provided target by calling {@link Creature#takeDamage(int)}.
-     * </p>
-     *
-     * @param target the creature receiving the attack; must be non-null
-     * @throws LowFirePowerException if the dragon does not have enough fire power to perform the attack
+     * @param target the creature to breathe fire on, must not be null
+     * @throws LowFirePowerException if the dragon does not have enough fire power
+     *                               to perform the attack
      */
-    public void breathFire(final Creature target) throws LowFirePowerException
+    public void breatheFire(final Creature target) throws LowFirePowerException
     {
         if (firePower < FIRE_POWER_COST)
         {
@@ -90,19 +97,18 @@ public class Dragon extends Creature
         }
         firePower -= FIRE_POWER_COST;
         target.takeDamage(FIRE_POWER_DAMAGE);
-        System.out.println(getName() + " breathes fire on " + target.getName() + " for " + FIRE_POWER_DAMAGE + " damage");
+        System.out.println(getName() + " breathes fire on " + target.getName() + " for " + FIRE_POWER_DAMAGE + " " +
+            "damage");
     }
 
     /**
-     * Restore fire power by the specified amount.
-     *
+     * Restores fire power to the dragon by the specified amount.
      * <p>
-     * The amount must be non-negative. After restoration, fire power is clamped
-     * to {@value #MAX_FIRE_POWER} if it would exceed that value.
+     * Fire power cannot exceed {@link #MAX_FIRE_POWER}.
      * </p>
      *
-     * @param amount the amount of fire power to restore; must be >= {@value #MIN_FIRE_POWER}
-     * @throws IllegalArgumentException if {@code amount} is negative
+     * @param amount the amount of fire power to restore, must be non-negative
+     * @throws IllegalArgumentException if the amount is negative
      */
     public void restoreFirePower(final int amount)
     {
