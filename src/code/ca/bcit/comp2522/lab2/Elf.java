@@ -15,9 +15,9 @@ package ca.bcit.comp2522.lab2;
  */
 public class Elf extends Creature
 {
-    private static final int MIN_MANA = 0;
-    private static final int MAX_MANA = 50;
-    private static final int MANA_COST = 5;
+    private static final int MIN_MANA     = 0;
+    private static final int MAX_MANA     = 50;
+    private static final int MANA_COST    = 5;
     private static final int SPELL_DAMAGE = 10;
 
     private int mana;
@@ -35,7 +35,10 @@ public class Elf extends Creature
      *                                  or if any arguments to the {@code Creature}
      *                                  constructor are invalid
      */
-    public Elf(final String name, final Date dateOfBirth, final int health, final int mana)
+    public Elf(final String name,
+               final Date dateOfBirth,
+               final int health,
+               final int mana)
     {
         super(name, dateOfBirth, health);
         validateMana(mana);

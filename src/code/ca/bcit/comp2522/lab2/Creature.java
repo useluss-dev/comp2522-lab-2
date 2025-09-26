@@ -13,14 +13,15 @@ package ca.bcit.comp2522.lab2;
  */
 public class Creature
 {
-    private final static int MIN_HEALTH = 0;
-    private final static int MAX_HEALTH = 100;
-    private final static int MIN_DAMAGE = 0;
-    private final static int MIN_HEAL_AMOUNT = 0;
+    private final static int  MIN_HEALTH      = 0;
+    private final static int  MAX_HEALTH      = 100;
+    private final static int  MIN_DAMAGE      = 0;
+    private final static int  MIN_HEAL_AMOUNT = 0;
+    private final static Date NOW             = new Date(2025, 9, 24);
 
     private final String name;
-    private final Date dateOfBirth;
-    private int health;
+    private final Date   dateOfBirth;
+    private       int    health;
 
     /**
      * Constructs a new {@code Creature} with the specified name, date of birth, and health.
@@ -31,15 +32,17 @@ public class Creature
      *                    {@link #MAX_HEALTH}
      * @throws IllegalArgumentException if validation of name, dateOfBirth, or health fails
      */
-    public Creature(final String name, final Date dateOfBirth, final int health)
+    public Creature(final String name,
+                    final Date dateOfBirth,
+                    final int health)
     {
         validateName(name);
         validateDate(dateOfBirth);
         validateHealth(health);
 
-        this.name = name;
+        this.name        = name;
         this.dateOfBirth = dateOfBirth;
-        this.health = health;
+        this.health      = health;
     }
 
     /**
@@ -147,15 +150,14 @@ public class Creature
         Date now;
         int diff;
 
-        now = new Date(2025, 9, 22);
-        diff = now.getYear() - dateOfBirth.getYear();
-        if (dateOfBirth.getMonth() > now.getMonth())
+        diff = NOW.getYear() - dateOfBirth.getYear();
+        if (dateOfBirth.getMonth() > NOW.getMonth())
         {
             diff--;
         }
 
-        if (dateOfBirth.getMonth() == now.getMonth() &&
-            dateOfBirth.getDay() > now.getDay())
+        if (dateOfBirth.getMonth() == NOW.getMonth() &&
+            dateOfBirth.getDay() > NOW.getDay())
         {
             diff--;
         }
@@ -172,7 +174,7 @@ public class Creature
     public void getDetails()
     {
         System.out.println("Name: " + name);
-        System.out.println("ca.bcit.comp2522.lab2.Date of birth: " + dateOfBirth.getYYYYMMDD());
+        System.out.println("Date of birth: " + dateOfBirth.getYYYYMMDD());
         System.out.println("Age: " + getAgeYears());
         System.out.println("Health: " + health);
     }

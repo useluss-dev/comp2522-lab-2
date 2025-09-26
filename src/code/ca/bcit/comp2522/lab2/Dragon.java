@@ -16,9 +16,9 @@ package ca.bcit.comp2522.lab2;
  */
 public class Dragon extends Creature
 {
-    private static final int MIN_FIRE_POWER = 0;
-    private static final int MAX_FIRE_POWER = 100;
-    private static final int FIRE_POWER_COST = 10;
+    private static final int MIN_FIRE_POWER    = 0;
+    private static final int MAX_FIRE_POWER    = 100;
+    private static final int FIRE_POWER_COST   = 10;
     private static final int FIRE_POWER_DAMAGE = 20;
 
     private int firePower;
@@ -35,7 +35,10 @@ public class Dragon extends Creature
      * @throws IllegalArgumentException if firePower is outside the valid range, or if any
      *                                  arguments to the {@code Creature} constructor are invalid
      */
-    public Dragon(String name, Date birthDate, int age, int firePower)
+    public Dragon(String name,
+                  Date birthDate,
+                  int age,
+                  int firePower)
     {
         super(name, birthDate, age);
         validateFirePower(firePower);
@@ -98,7 +101,7 @@ public class Dragon extends Creature
         firePower -= FIRE_POWER_COST;
         target.takeDamage(FIRE_POWER_DAMAGE);
         System.out.println(getName() + " breathes fire on " + target.getName() + " for " + FIRE_POWER_DAMAGE + " " +
-            "damage");
+                           "damage");
     }
 
     /**

@@ -14,13 +14,13 @@ package ca.bcit.comp2522.lab2;
  */
 public class Orc extends Creature
 {
-    private static final int MIN_RAGE = 0;
-    private static final int MAX_RAGE = 30;
-    private static final int RAGE_INCREASE = 5;
-    private static final int RAGE_THRESHOLD = 20;
+    private static final int MIN_RAGE         = 0;
+    private static final int MAX_RAGE         = 30;
+    private static final int RAGE_INCREASE    = 5;
+    private static final int RAGE_THRESHOLD   = 20;
     private static final int MIN_BERSERK_RAGE = 5;
-    private static final int NORMAL_DAMAGE = 15;
-    private static final int DOUBLE_DAMAGE = 30;
+    private static final int NORMAL_DAMAGE    = 15;
+    private static final int DOUBLE_DAMAGE    = 30;
 
     private int rage;
 
@@ -37,11 +37,13 @@ public class Orc extends Creature
      *                                  or if any arguments to the {@code Creature}
      *                                  constructor are invalid
      */
-    public Orc(final String name, final Date dateOfBirth, final int health, final int rage)
+    public Orc(final String name,
+               final Date dateOfBirth,
+               final int health,
+               final int rage)
     {
         super(name, dateOfBirth, health);
-        if (rage < MIN_RAGE ||
-            rage > MAX_RAGE)
+        if (rage < MIN_RAGE || rage > MAX_RAGE)
         {
             throw new IllegalArgumentException("Rage must be between " + MIN_RAGE + " and " + MAX_RAGE);
         }

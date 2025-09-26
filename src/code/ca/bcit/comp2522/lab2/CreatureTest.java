@@ -14,35 +14,35 @@ package ca.bcit.comp2522.lab2;
  */
 public class CreatureTest
 {
-    private static final int DRAGON_BIRTH_YEAR = 1974;
+    private static final int DRAGON_BIRTH_YEAR  = 1974;
     private static final int DRAGON_BIRTH_MONTH = 1;
-    private static final int DRAGON_BIRTH_DAY = 15;
-    private static final int DRAGON_HEALTH = 95;
-    private static final int DRAGON_FIRE_POWER = 80;
+    private static final int DRAGON_BIRTH_DAY   = 15;
+    private static final int DRAGON_HEALTH      = 95;
+    private static final int DRAGON_FIRE_POWER  = 80;
 
-    private static final int ELF_BIRTH_YEAR = 1924;
+    private static final int ELF_BIRTH_YEAR  = 1924;
     private static final int ELF_BIRTH_MONTH = 3;
-    private static final int ELF_BIRTH_DAY = 22;
-    private static final int ELF_HEALTH = 85;
-    private static final int ELF_MANA = 45;
+    private static final int ELF_BIRTH_DAY   = 22;
+    private static final int ELF_HEALTH      = 85;
+    private static final int ELF_MANA        = 45;
 
-    private static final int ORC_BIRTH_YEAR = 1999;
+    private static final int ORC_BIRTH_YEAR  = 1999;
     private static final int ORC_BIRTH_MONTH = 7;
-    private static final int ORC_BIRTH_DAY = 10;
-    private static final int ORC_HEALTH = 90;
-    private static final int ORC_RAGE = 15;
+    private static final int ORC_BIRTH_DAY   = 10;
+    private static final int ORC_HEALTH      = 90;
+    private static final int ORC_RAGE        = 15;
 
     private static final int CREATURES_ARRAY_SIZE = 3;
-    private static final int DRAGON_INDEX = 0;
-    private static final int ELF_INDEX = 1;
-    private static final int ORC_INDEX = 2;
+    private static final int DRAGON_INDEX         = 0;
+    private static final int ELF_INDEX            = 1;
+    private static final int ORC_INDEX            = 2;
 
-    private static final int NEGATIVE_DAMAGE = -10;
-    private static final int NEGATIVE_HEALING = -5;
-    private static final int WEAK_ORC_HEALTH = 50;
-    private static final int WEAK_ORC_RAGE = 3;
+    private static final int NEGATIVE_DAMAGE           = -10;
+    private static final int NEGATIVE_HEALING          = -5;
+    private static final int WEAK_ORC_HEALTH           = 50;
+    private static final int WEAK_ORC_RAGE             = 3;
     private static final int MIN_FIRE_POWER_FOR_ATTACK = 10;
-    private static final int MIN_MANA_FOR_SPELL = 5;
+    private static final int MIN_MANA_FOR_SPELL        = 5;
 
     /**
      * Entry point of the program. Runs creature creation, prints details,
@@ -216,7 +216,7 @@ public class CreatureTest
             for (final Creature creature : creatures)
             {
                 System.out.println("\n" + creature.getName() + " - Health: " + creature.getHealth() +
-                    " - Status: " + (creature.isAlive() ? "Alive" : "Dead"));
+                                   " - Status: " + (creature.isAlive() ? "Alive" : "Dead"));
             }
 
         }
