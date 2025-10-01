@@ -41,6 +41,7 @@ public class Dragon extends Creature
                   int firePower)
     {
         super(name, birthDate, age);
+
         validateFirePower(firePower);
         this.firePower = firePower;
     }

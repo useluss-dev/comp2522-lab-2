@@ -41,6 +41,7 @@ public class Elf extends Creature
                final int mana)
     {
         super(name, dateOfBirth, health);
+
         validateMana(mana);
         this.mana = mana;
     }
@@ -127,5 +128,4 @@ public class Elf extends Creature
             mana = MAX_MANA;
         }
     }
-
 }

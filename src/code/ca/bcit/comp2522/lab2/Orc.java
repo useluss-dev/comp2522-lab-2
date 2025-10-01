@@ -43,12 +43,24 @@ public class Orc extends Creature
                final int rage)
     {
         super(name, dateOfBirth, health);
+
+        validateRage(rage);
+        this.rage = rage;
+    }
+
+    /**
+     * Validates that the specified rage value is within the allowed range.
+     *
+     * @param rage the rage value to validate
+     * @throws IllegalArgumentException if {@code rage} is less than {@value #MIN_RAGE}
+     *                                  or greater than {@value #MAX_RAGE}
+     */
+    private static void validateRage(final int rage)
+    {
         if (rage < MIN_RAGE || rage > MAX_RAGE)
         {
             throw new IllegalArgumentException("Rage must be between " + MIN_RAGE + " and " + MAX_RAGE);
         }
-
-        this.rage = rage;
     }
 
 

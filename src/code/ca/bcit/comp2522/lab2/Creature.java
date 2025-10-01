@@ -17,11 +17,16 @@ public class Creature
     private final static int  MAX_HEALTH      = 100;
     private final static int  MIN_DAMAGE      = 0;
     private final static int  MIN_HEAL_AMOUNT = 0;
-    private final static Date NOW             = new Date(2025, 9, 24);
+    private final static Date NOW;
 
     private final String name;
     private final Date   dateOfBirth;
     private       int    health;
+
+    static
+    {
+        NOW = new Date(2025, 9, 24);
+    }
 
     /**
      * Constructs a new {@code Creature} with the specified name, date of birth, and health.
@@ -68,26 +73,24 @@ public class Creature
      */
     private static void validateDate(final Date date)
     {
-        Date now;
         if (date == null)
         {
             throw new IllegalArgumentException("ca.bcit.comp2522.lab2.Date cannot be null");
         }
 
-        now = new Date(2025, 9, 22);
-        if (date.getYear() > now.getYear())
+        if (date.getYear() > NOW.getYear())
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
 
-        if (date.getYear() == now.getYear() &&
-            date.getMonth() > now.getMonth())
+        if (date.getYear() == NOW.getYear() &&
+            date.getMonth() > NOW.getMonth())
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
 
-        if (date.getMonth() == now.getMonth() &&
-            date.getDay() > now.getDay())
+        if (date.getMonth() == NOW.getMonth() &&
+            date.getDay() > NOW.getDay())
         {
             throw new IllegalArgumentException("The provided date must not be in the future.");
         }
@@ -147,7 +150,6 @@ public class Creature
      */
     public int getAgeYears()
     {
-        Date now;
         int diff;
 
         diff = NOW.getYear() - dateOfBirth.getYear();
