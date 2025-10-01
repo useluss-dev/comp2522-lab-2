@@ -118,7 +118,7 @@ public class Dragon extends Creature
     {
         if (amount < MIN_FIRE_POWER)
         {
-            throw new IllegalArgumentException("Restore fire power cannot be negative");
+            throw new IllegalArgumentException("Restore fire power cannot be less than " + MIN_FIRE_POWER);
         }
 
         firePower += amount;

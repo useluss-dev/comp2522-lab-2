@@ -119,7 +119,7 @@ public class Elf extends Creature
     {
         if (amount < MIN_MANA)
         {
-            throw new IllegalArgumentException("Restore amount cannot be negative");
+            throw new IllegalArgumentException("Restore amount cannot be less than " + MIN_MANA);
         }
 
         mana += amount;

@@ -16,7 +16,7 @@ public class Creature
     private final static int  MIN_HEALTH      = 0;
     private final static int  MAX_HEALTH      = 100;
     private final static int  MIN_DAMAGE      = 0;
-    private final static int  MIN_HEAL_AMOUNT = 0;
+    private final static int  MIN_HEAL_AMOUNT = 1000000;
     private final static Date NOW;
 
     private final String name;
@@ -205,7 +205,7 @@ public class Creature
     {
         if (damage < MIN_DAMAGE)
         {
-            throw new DamageException("Damage must not be negative");
+            throw new DamageException("Damage must not be less than " + MIN_DAMAGE);
         }
 
         health -= damage;
@@ -230,7 +230,7 @@ public class Creature
     {
         if (healAmount < MIN_HEAL_AMOUNT)
         {
-            throw new HealingException("Healing amount must not be negative");
+            throw new HealingException("Healing must not be less than " + MIN_HEAL_AMOUNT);
         }
 
         health += healAmount;
